@@ -18,9 +18,9 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/pkg/errors"
 
-	"github.com/yudai/gotty/pkg/homedir"
-	"github.com/yudai/gotty/pkg/randomstring"
-	"github.com/yudai/gotty/webtty"
+	"github.com/arashicage/gotty/pkg/homedir"
+	"github.com/arashicage/gotty/pkg/randomstring"
+	"github.com/arashicage/gotty/webtty"
 )
 
 // Server provides a webtty HTTP endpoint.
@@ -95,9 +95,9 @@ func (server *Server) Run(ctx context.Context, options ...RunOption) error {
 
 	counter := newCounter(time.Duration(server.options.Timeout) * time.Second)
 
-	path := "/"
+	path := "/" + server.options.UrlPerfix
 	if server.options.EnableRandomUrl {
-		path = "/" + randomstring.Generate(server.options.RandomUrlLength) + "/"
+		path += "/" + randomstring.Generate(server.options.RandomUrlLength) + "/"
 	}
 
 	handlers := server.setupHandlers(cctx, cancel, path, counter)
