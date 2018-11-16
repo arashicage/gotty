@@ -1,0 +1,2 @@
+go build -ldflags "-X main.Version=v2.0.0-alpha.4 -X 'main.CommitID=`git rev-parse --short HEAD`"
+# go run -ldflags "-X main.Version=v2.0.0-alpha.4 -X 'main.CommitID=`git rev-parse --short HEAD`'" *.go
